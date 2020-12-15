@@ -3,7 +3,6 @@ version: '3'
 services:
   free5gc-upf-1:
     container_name: upf1
-    build: .
     # image for kubernetes
     image: black842679513/free5gc-compose_free5gc-upf-1
     command: ./free5gc-upfd -f ../config/upfcfg.yaml
@@ -18,7 +17,6 @@ services:
 
   free5gc-upf-2:
     container_name: upf2
-    build: .
     # image for kubernetes
     image: black842679513/free5gc-compose_free5gc-upf-2
     command: ./free5gc-upfd -f ../config/upfcfg.yaml
@@ -33,7 +31,6 @@ services:
 
   free5gc-upf-b:
     container_name: upfb
-    build: .
     # image for kubernetes
     image: black842679513/free5gc-compose_free5gc-upf-b
     command: ./free5gc-upfd -f ../config/upfcfg.yaml
@@ -61,7 +58,6 @@ services:
 
   free5gc-nrf:
     container_name: nrf
-    build: .
     # image for kubernetes
     image: black842679513/free5gc-compose_free5gc-nrf
     command: ./nrf -nrfcfg ../config/nrfcfg.conf
@@ -82,7 +78,6 @@ services:
 
   free5gc-amf:
     container_name: amf
-    build: .
     # image for kubernetes
     image: black842679513/free5gc-compose_free5gc-amf
     command: ./amf -amfcfg ../config/amfcfg.conf
@@ -102,7 +97,6 @@ services:
 
   free5gc-ausf:
     container_name: ausf
-    build: .
     # image for kubernetes
     image: black842679513/free5gc-compose_free5gc-ausf
     command: ./ausf -ausfcfg ../config/ausfcfg.conf
@@ -122,7 +116,6 @@ services:
 
   free5gc-nssf:
     container_name: nssf
-    build: .
     # image for kubernetes
     image: black842679513/free5gc-compose_free5gc-nssf
     command: ./nssf -nssfcfg ../config/nssfcfg.conf
@@ -142,7 +135,6 @@ services:
 
   free5gc-pcf:
     container_name: pcf
-    build: .
     # image for kubernetes
     image: black842679513/free5gc-compose_free5gc-pcf
     command: ./pcf -pcfcfg ../config/pcfcfg.conf
@@ -162,7 +154,6 @@ services:
 
   free5gc-smf:
     container_name: smf
-    build: .
     # image for kubernetes
     image: black842679513/free5gc-compose_free5gc-smf
     command: ./smf -smfcfg ../config/smfcfg.conf -uerouting ../config/uerouting.yaml
@@ -186,7 +177,6 @@ services:
 
   free5gc-udm:
     container_name: udm
-    build: .
     # image for kubernetes
     image: black842679513/free5gc-compose_free5gc-udm
     command: ./udm -udmcfg ../config/udmcfg.conf
@@ -207,7 +197,6 @@ services:
 
   free5gc-udr:
     container_name: udr
-    build: .
     # image for kubernetes
     image: black842679513/free5gc-compose_free5gc-udr
     command: ./udr -udrcfg ../config/udrcfg.conf
@@ -229,7 +218,6 @@ services:
 
   free5gc-n3iwf:
     container_name: n3iwf
-    build: .
     # image for kubernetes
     image: black842679513/free5gc-compose_free5gc-n3iwf
     command: sh -c "./n3iwf-ipsec.sh && ./n3iwf -n3iwfcfg ../config/n3iwfcfg.conf"
@@ -252,7 +240,6 @@ services:
 
   free5gc-webui:
     container_name: webui
-    build: .
     # image for kubernetes
     image: black842679513/free5gc-compose_free5gc-webui
     command: ./webui
