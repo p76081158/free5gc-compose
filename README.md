@@ -1,5 +1,15 @@
 # Free5GC Compose
 
+
+## My Work
+
+- [free5gc menu](https://hackmd.io/@Vcx/rkWCrnB0w)
+- modify docker-compose.yaml for easy deployment
+- setup easy demo
+- making kuernetes version (ongoing)
+
+---------------------------------------------------------------------
+
 This repository is a docker compose version of [free5GC](https://github.com/free5gc/free5gc) for stage 3. It's inspire by [free5gc-docker-compose](https://github.com/calee0219/free5gc-docker-compose) and also reference to [docker-free5GC](https://github.com/abousselmi/docker-free5gc).
 
 You can change your own config in [config](./config) folder and [docker-compose.yaml](docker-compose.yaml)
