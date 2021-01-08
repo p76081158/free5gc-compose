@@ -1,0 +1,85 @@
+---
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: nrfcfg-conf
+data:
+  nrfcfg.conf: |
+    info:
+      version: 1.0.0
+      description: NRF initial local configuration
+
+    configuration:
+      MongoDBName: "free5gc"
+      MongoDBUrl: "mongodb://db:27017"
+      # kubernetes dns doesn't support '.' in alias
+      DefaultServiceIP: "nrf-free5gc-org"
+      sbi:
+        scheme: http
+        # change nrf.free5gc.org to service name of nrf in kubernetes (free5gc-nrf-svc)
+        ipv4Addr: free5gc-nrf-svc
+        port: 29510
+      DefaultPlmnId:
+        mcc: "208"
+        mnc: "93"
+      serviceNameList:
+        - nnrf-nfm
+        - nnrf-disc
+
+---
+apiVersion: v1
+kind: Service
+metadata:
+  # must the same as nrfcfg.conf:ipv4Addr, kubernetes dns doesn't support 'nfr.free5gc.org' network aliases 
+  name: free5gc-nrf-svc
+spec:
+  type: ClusterIP
+  selector:
+    # will bind pod with label app: free5gc-nrf
+    app: free5gc-nrf
+  ports:
+    - name: nrf-port
+      port: 29510
+
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: free5gc-nrf-deployment
+  labels:
+    app: free5gc-nrf
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: free5gc-nrf
+  template:
+    metadata:
+      labels:
+        app: free5gc-nrf
+    spec:
+      containers:
+      - name: free5gc-nrf
+        image: black842679513/free5gc-compose_free5gc-nrf
+        env:
+          - name: DB_URI
+            value: "mongodb-svc"
+          - name: GIN_MODE
+            value: "release"
+        # for test
+        # command: [ "/bin/sh", "-c", "--" ]
+        # args: [ "while true; do sleep 30; done;" ]
+        args: ["./nrf", "-nrfcfg", "../config/nrfcfg.conf"]
+        ports:
+          - containerPort: 29510
+        volumeMounts:
+          - name: config
+            mountPath: /free5gc/config
+      volumes:
+      - name: config
+        projected:
+          sources:
+          - configMap:
+              name: nrfcfg-conf
+          - configMap:
+              name: free5gc-conf
