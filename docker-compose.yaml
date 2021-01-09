@@ -170,6 +170,7 @@ services:
         aliases:
           - smf.free5gc.org
     depends_on:
+      # user plane up before smf
       - free5gc-nrf
       - free5gc-upf-1
       - free5gc-upf-2
