@@ -58,6 +58,9 @@ services:
       privnet:
         aliases:
           - db
+    # for Subscriber Module reacheable
+    ports:
+      - "27018:27017"
 
   free5gc-nrf:
     container_name: nrf
