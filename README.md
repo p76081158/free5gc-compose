@@ -5,7 +5,7 @@
 
 - [free5gc menu](https://hackmd.io/@Vcx/rkWCrnB0w)
 - modify docker-compose.yaml for easy deployment
-- setup easy demo
+- setup easy demo (ongoing)
 - making kuernetes version (ongoing)
 
 ---------------------------------------------------------------------
